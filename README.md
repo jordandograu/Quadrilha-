@@ -1,156 +1,33 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Convite para Quadrilha</title>
-<style>
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(45deg, #fceabb, #f8b500);
-    color: #4a2c00;
-    display: flex;
-    height: 100vh;
-    margin: 0;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-    padding: 1rem;
-  }
-  a.invite-link {
-    font-size: 1.8rem;
-    background: #d26100;
-    color: #fff;
-    padding: 1rem 2rem;
-    border-radius: 40px;
-    text-decoration: none;
-    box-shadow: 0 8px 15px rgba(210, 97, 0, 0.4);
-    transition: background 0.3s, box-shadow 0.3s;
-    cursor: pointer;
-  }
-  a.invite-link:hover {
-    background: #ffa632;
-    box-shadow: 0 12px 20px rgba(255, 166, 50, 0.6);
-  }
-  .invitation-container {
-    margin-top: 2rem;
-    max-width: 380px;
-    background: #fff3d0;
-    border-radius: 15px;
-    border: 2px solid #d26100;
-    padding: 1.5rem;
-    color: #663c00;
-    box-shadow: 0 4px 10px rgba(210, 97, 0, 0.3);
-  }
-  .invitation-text {
-    font-size: 1.2rem;
-    white-space: pre-line;
-    line-height: 1.4;
-    margin-bottom: 1.5rem;
-  }
-  .response-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-  }
-  button {
-    font-size: 1.1rem;
-    padding: 0.6rem 1.5rem;
-    border-radius: 30px;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 5px 10px rgba(210, 97, 0, 0.4);
-    transition: background 0.3s, box-shadow 0.3s;
-  }
-  button.sim {
-    background-color: #28a745;
-    color: #fff;
-  }
-  button.sim:hover {
-    background-color: #5bd36f;
-    box-shadow: 0 8px 15px rgba(91, 211, 111, 0.6);
-  }
-  button.nao {
-    background-color: #dc3545;
-    color: #fff;
-  }
-  button.nao:hover {
-    background-color: #ef5b64;
-    box-shadow: 0 8px 15px rgba(239, 91, 100, 0.6);
-  }
-</style>
-</head>
-<body>
-  <a href="#" class="invite-link" id="inviteLink">💃 Convite para Quadrilha 💃</a>
 
-  <div id="invitationContainer" class="invitation-container" style="display:none;">
-    <div id="invitationText" class="invitation-text"></div>
-    <div class="response-buttons" id="responseButtons">
-      <button class="sim" id="btnSim">Sim</button>
-      <button class="nao" id="btnNao">Não</button>
-    </div>
-  </div>
 
-<script>
-  // Helper to get URL parameter by name
-  function getParameterByName(name) {
-    const url = window.location.href;
-    name = name.replace(/[\\[\\]]/g, '\\$&');
-    const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
-    const results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
-  }
+<!--
+  <<< Author notes: Step 2 >>>
+  Start this step by acknowledging the previous step.
+  Define terms and link to docs.github.com.
+  Historic note: previous version checked for empty pull request, changed to the correct theme `minima`.
+-->
 
-  // Get the "name" parameter or default "Bruna"
-  const convidada = getParameterByName('name') || 'Bruna';
+## Step 2: Configure your site
 
-  const conviteTexto =
-`🤠 Olá, ${convidada}! 🤠
+_You turned on GitHub Pages! :tada:_
 
-Você aceita ser minha par no baile de quadrilha?
-Prepare seu traje, seu sorriso e muita animação!
+We'll work in a branch, `my-pages`, that I created for you to get this site looking great. :sparkle:
 
-Será uma noite inesquecível com muita festa, dança e alegria!
-Espero de coração seu SIM para formarmos a dupla mais animada do baile!
+Jekyll uses a file titled `_config.yml` to store settings for your site, your theme, and reusable content like your site title and GitHub handle. You can check out the `_config.yml` file on the **Code** tab of your repository.
 
-Com carinho,
-Seu parceiro de dança 🕺
+We need to use a blog-ready theme. For this activity, we will use a theme named "minima".
 
-👢🎉 Vamos juntos arrasar na quadrilha! 🎉👢`;
+### :keyboard: Activity: Configure your site
 
-  const inviteLink = document.getElementById('inviteLink');
-  const invitationContainer = document.getElementById('invitationContainer');
-  const invitationText = document.getElementById('invitationText');
-  const responseButtons = document.getElementById('responseButtons');
-  const btnSim = document.getElementById('btnSim');
-  const btnNao = document.getElementById('btnNao');
+1. Browse to the `_config.yml` file in the `my-pages` branch.
+1. In the upper right corner, open the file editor.
+1. Add a `theme:` set to **minima** so it shows in the `_config.yml` file as below:
+   ```yml
+   theme: minima
+   ```
+1. (optional) You can modify the other configuration variables such as `title:`, `author:`, and `description:` to further customize your site.
+1. Commit your changes.
+1. (optional) Create a pull request to view all the changes you'll make throughout this course. Click the **Pull Requests** tab, click **New pull request**, set `base: main` and `compare:my-pages`.
+1. Wait about 20 seconds then refresh this page (the one you're following instructions from). [GitHub Actions](https://docs.github.com/en/actions) will automatically update to the next step.
 
-  inviteLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    if (invitationContainer.style.display === 'none') {
-      invitationText.textContent = conviteTexto;
-      invitationContainer.style.display = 'block';
-      inviteLink.textContent = '❌ Fechar Convite';
-    } else {
-      invitationContainer.style.display = 'none';
-      inviteLink.textContent = '💃 Convite para Quadrilha 💃';
-      invitationText.textContent = '';
-      responseButtons.style.display = 'flex';
-    }
-  });
 
-  btnSim.addEventListener('click', () => {
-    invitationText.textContent = '🎉 Que alegria! Mal posso esperar para dançarmos juntos! 🕺💃';
-    responseButtons.style.display = 'none';
-  });
-
-  btnNao.addEventListener('click', () => {
-    invitationText.textContent = '❤️ Tudo bem, mesmo assim você é muito especial para mim!';
-    responseButtons.style.display = 'none';
-  });
-</script>
-</body>
-</html>
