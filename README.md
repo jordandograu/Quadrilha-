@@ -1,54 +1,156 @@
-<header>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Convite para Quadrilha</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(45deg, #fceabb, #f8b500);
+    color: #4a2c00;
+    display: flex;
+    height: 100vh;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
+  }
+  a.invite-link {
+    font-size: 1.8rem;
+    background: #d26100;
+    color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 40px;
+    text-decoration: none;
+    box-shadow: 0 8px 15px rgba(210, 97, 0, 0.4);
+    transition: background 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+  }
+  a.invite-link:hover {
+    background: #ffa632;
+    box-shadow: 0 12px 20px rgba(255, 166, 50, 0.6);
+  }
+  .invitation-container {
+    margin-top: 2rem;
+    max-width: 380px;
+    background: #fff3d0;
+    border-radius: 15px;
+    border: 2px solid #d26100;
+    padding: 1.5rem;
+    color: #663c00;
+    box-shadow: 0 4px 10px rgba(210, 97, 0, 0.3);
+  }
+  .invitation-text {
+    font-size: 1.2rem;
+    white-space: pre-line;
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+  }
+  .response-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  button {
+    font-size: 1.1rem;
+    padding: 0.6rem 1.5rem;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(210, 97, 0, 0.4);
+    transition: background 0.3s, box-shadow 0.3s;
+  }
+  button.sim {
+    background-color: #28a745;
+    color: #fff;
+  }
+  button.sim:hover {
+    background-color: #5bd36f;
+    box-shadow: 0 8px 15px rgba(91, 211, 111, 0.6);
+  }
+  button.nao {
+    background-color: #dc3545;
+    color: #fff;
+  }
+  button.nao:hover {
+    background-color: #ef5b64;
+    box-shadow: 0 8px 15px rgba(239, 91, 100, 0.6);
+  }
+</style>
+</head>
+<body>
+  <a href="#" class="invite-link" id="inviteLink">💃 Convite para Quadrilha 💃</a>
 
-<!--
-  <<< Author notes: Course header >>>
-  Include a 1280×640 image, course title in sentence case, and a concise description in emphasis.
-  In your repository settings: enable template repository, add your 1280×640 social image, auto delete head branches.
-  Add your open source license, GitHub uses MIT license.
--->
+  <div id="invitationContainer" class="invitation-container" style="display:none;">
+    <div id="invitationText" class="invitation-text"></div>
+    <div class="response-buttons" id="responseButtons">
+      <button class="sim" id="btnSim">Sim</button>
+      <button class="nao" id="btnNao">Não</button>
+    </div>
+  </div>
 
-# GitHub Pages
+<script>
+  // Helper to get URL parameter by name
+  function getParameterByName(name) {
+    const url = window.location.href;
+    name = name.replace(/[\\[\\]]/g, '\\$&');
+    const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+    const results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+  }
 
-_Create a site or blog from your GitHub repositories with GitHub Pages._
+  // Get the "name" parameter or default "Bruna"
+  const convidada = getParameterByName('name') || 'Bruna';
 
-</header>
+  const conviteTexto =
+`🤠 Olá, ${convidada}! 🤠
 
-<!--
-  <<< Author notes: Step 1 >>>
-  Choose 3-5 steps for your course.
-  The first step is always the hardest, so pick something easy!
-  Link to docs.github.com for further explanations.
-  Encourage users to open new tabs for steps!
--->
+Você aceita ser minha par no baile de quadrilha?
+Prepare seu traje, seu sorriso e muita animação!
 
-## Step 1: Enable GitHub Pages
+Será uma noite inesquecível com muita festa, dança e alegria!
+Espero de coração seu SIM para formarmos a dupla mais animada do baile!
 
-_Welcome to GitHub Pages and Jekyll :tada:!_
+Com carinho,
+Seu parceiro de dança 🕺
 
-The first step is to enable GitHub Pages on this [repository](https://docs.github.com/en/get-started/quickstart/github-glossary#repository). When you enable GitHub Pages on a repository, GitHub takes the content that's on the main branch and publishes a website based on its contents.
+👢🎉 Vamos juntos arrasar na quadrilha! 🎉👢`;
 
-### :keyboard: Activity: Enable GitHub Pages
+  const inviteLink = document.getElementById('inviteLink');
+  const invitationContainer = document.getElementById('invitationContainer');
+  const invitationText = document.getElementById('invitationText');
+  const responseButtons = document.getElementById('responseButtons');
+  const btnSim = document.getElementById('btnSim');
+  const btnNao = document.getElementById('btnNao');
 
-1. Open a new browser tab, and work on the steps in your second tab while you read the instructions in this tab.
-1. Under your repository name, click **Settings**.
-1. Click **Pages** in the **Code and automation** section.
-1. Ensure "Deploy from a branch" is selected from the **Source** drop-down menu, and then select `main` from the **Branch** drop-down menu.
-1. Click the **Save** button.
-1. Wait about _one minute_ then refresh this page (the one you're following instructions from). [GitHub Actions](https://docs.github.com/en/actions) will automatically update to the next step.
-   > Turning on GitHub Pages creates a deployment of your repository. GitHub Actions may take up to a minute to respond while waiting for the deployment. Future steps will be about 20 seconds; this step is slower.
-   > **Note**: In the **Pages** of **Settings**, the **Visit site** button will appear at the top. Click the button to see your GitHub Pages site.
+  inviteLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (invitationContainer.style.display === 'none') {
+      invitationText.textContent = conviteTexto;
+      invitationContainer.style.display = 'block';
+      inviteLink.textContent = '❌ Fechar Convite';
+    } else {
+      invitationContainer.style.display = 'none';
+      inviteLink.textContent = '💃 Convite para Quadrilha 💃';
+      invitationText.textContent = '';
+      responseButtons.style.display = 'flex';
+    }
+  });
 
-<footer>
+  btnSim.addEventListener('click', () => {
+    invitationText.textContent = '🎉 Que alegria! Mal posso esperar para dançarmos juntos! 🕺💃';
+    responseButtons.style.display = 'none';
+  });
 
-<!--
-  <<< Author notes: Footer >>>
-  Add a link to get support, GitHub status page, code of conduct, license link.
--->
-
----
-
-Get help: [Post in our discussion board](https://github.com/orgs/skills/discussions/categories/github-pages) &bull; [Review the GitHub status page](https://www.githubstatus.com/)
-
-&copy; 2023 GitHub &bull; [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [MIT License](https://gh.io/mit)
-
-</footer>
+  btnNao.addEventListener('click', () => {
+    invitationText.textContent = '❤️ Tudo bem, mesmo assim você é muito especial para mim!';
+    responseButtons.style.display = 'none';
+  });
+</script>
+</body>
+</html>
